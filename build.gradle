@@ -1,0 +1,112 @@
+apply plugin: 'java'
+
+/*
+ * Copyright (c) Jipzingking 2015.
+ */
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "us.codecraft:webmagic-core:0.5.2"
+    compile "us.codecraft:webmagic-extension:0.5.2"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task BaiduJar(type: Jar) {
+    archiveName "Baidu.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.baidu.Baidu'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task HiapkJar(type: Jar) {
+    archiveName "Hiapk.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.hiapk.Hiapk'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task MiJar(type: Jar) {
+    archiveName "Mi.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.mi.Mi'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task MumayiJar(type: Jar) {
+    archiveName "Mumayi.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.mumayi.Mumayi'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task TencentJar(type: Jar) {
+    archiveName "Tencent.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.tencent.Tencent'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task QihuJar(type: Jar) {
+    archiveName "Qihu.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.qihu.Qihu'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task BaiduSpecJar(type: Jar) {
+    archiveName "BaiduSpec.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.baidu.BaiduSpecification'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task QihuSpecJar(type: Jar) {
+    archiveName "QihuSpec.jar"
+    manifest {
+        attributes 'Main-Class': 'spider.qihu.QihuSpecification'
+    }
+    from(sourceSets.main.output) {
+        include "spider/**"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+artifacts {
+//    archives BaiduSpecJar
+//    archives QihuSpecJar
+    archives TencentJar
+}
